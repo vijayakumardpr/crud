@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <input
+        type="email"
+        class="form-control"
+        id="todo"
+        placeholder="Enter todo item"
+        [(ngModel)]="todoItem"
+      />
+    </div>
+    <div class="col">
+      <button class="btn btn-success" (click)="addData()">Add todo</button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Todo</th>
+            <th scope="col">Completed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of allTodoItems">
+            <th scope="row">{{ item.id }}</th>
+            <td>{{ item.todo }}</td>
+            <td>{{ item.done }}</td>
+            <td>
+              <input
+                type="checkbox"
+                (change)="handleTodoChange(item, $event)"
+                [checked]="item.done"
+              />
+            </td>
+            <td><button (click)="deleteItem(item)">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
